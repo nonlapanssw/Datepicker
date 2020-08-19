@@ -1,0 +1,39 @@
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	System.setProperty("webdriver.chrome.driver","C:\\Users\\mangp\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		//ChromeDriverManager.getInstance().setup();
+		WebDriver driver = new ChromeDriver();		
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+
+		//1. Access this URL: https://ecom-test-dat.worldticket.net/
+		driver.get("https://ecom-test-dat.worldticket.net/");
+        driver.manage().window().maximize();		
+        //WebElement calendar= driver.findElement(By.xpath("//div[@id='departdatebox']/div[@class='datepicker hasDatepicker']//div[@class='ui-datepicker-group ui-datepicker-group-last']/table[@class='ui-datepicker-calendar']/tbody/tr[3]/td[1]/a[@href='#']"));
+		//executor.executeScript("arguments[0].click();", calendar);
+    
+      //Retrieve current selected month name from date picker popup.
+        WebElement calMonth = driver.findElement(By.className("ui-datepicker-month"));
+        System.out.println(calMonth.getText());
+        //Retrieve current selected year name from date picker popup.
+        
+        WebElement calDate;
+        int i;
+        int j;
+        for(i=1;i<=5;i++) {
+        	for(j=1;j<=5;j++) {
+        		calDate = driver.findElement(By.xpath("//div[@class='ui-datepicker-group ui-datepicker-group-first']/table[@class='ui-datepicker-calendar']/tbody/tr["+ i +"]/td["+j+"]/a"));
+        		System.out.println(calDate.getText());
+        	}
+        	
+        }
+        
+       
+      //div[@id='departdatebox']/div[@class='datepicker hasDatepicker']//div[@class='ui-datepicker-group ui-datepicker-group-first']
+    
+    
+    
+      	//div[@id='departdatebox']/div[@class='datepicker hasDatepicker']//div[@class='ui-datepicker-group ui-datepicker-group-last']/table[@class='ui-datepicker-calendar']/tbody/tr[4]/td[4]/a[@href='#']
+    }
+}
